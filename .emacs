@@ -31,6 +31,7 @@
 
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
+(setq require-final-newline nil)
 
 (load "/usr/share/emacs/site-lisp/haskell-mode/haskell-site-file")
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)

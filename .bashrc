@@ -43,6 +43,7 @@ source ~/.svn_completion
 
 export BROWSER=firefox
 export EDITOR='emacs -nw'
+export PATH=$PATH:/usr/local/bin
 CDPATH=.:
 export FANTOMDATADIR=/home/boots/fantom/trunk/testData/
 

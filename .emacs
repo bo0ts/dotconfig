@@ -20,6 +20,38 @@
 (color-theme-gnome2)
 (set-fringe-mode 0)
 
+(require 'erc)
+(setq erc-track-exclude-types '("JOIN" "NICK" "PART" "QUIT" "MODE"
+				"324" "329" "332" "333" "353" "477"))
+(setq erc-hide-list '("JOIN" "PART" "QUIT"))
+
+(defadvice erc-track-find-face (around erc-track-find-face-promote-query activate)
+  (if (erc-query-buffer-p) 
+      (setq ad-return-value (intern "erc-current-nick-face"))
+    ad-do-it))
+
+(defun x-urgency-hint (frame arg &optional source)
+  (let* ((wm-hints (append (x-window-property 
+			    "WM_HINTS" frame "WM_HINTS" 
+			    (if source
+				source
+			      (string-to-number 
+			       (frame-parameter frame 'outer-window-id)))
+			    nil t) nil))
+	 (flags (car wm-hints)))
+    (setcar wm-hints
+	    (if arg
+		(logior flags #x00000100)
+	      (logand flags #xFFFFFEFF)))
+    (x-change-window-property "WM_HINTS" wm-hints frame "WM_HINTS" 32 t)))
+
+
+(setq erc-autojoin-channels-alist
+          '(("freenode.net" "#emacs" "#archlinux" "#haskell" "#xmonad" "##c++")))
+(erc :server "irc.freenode.net" :port 6667 :nick "bo0ts__")
+(erc :server "localhost" :port 6667 :nick "boots")
+(setq erc-auto-query 'buffer)
+
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))

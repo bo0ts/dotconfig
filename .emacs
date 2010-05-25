@@ -3,6 +3,7 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
+ '(erc-nickserv-identify-mode (quote nick-change))
  '(inhibit-startup-screen t)
  '(standard-indent 2))
 (custom-set-faces
@@ -16,6 +17,8 @@
 (load "preview-latex.el" nil t t)
 
 (require 'color-theme)
+(require 'codepad)
+
 (color-theme-initialize)
 (color-theme-gnome2)
 (set-fringe-mode 0)
@@ -24,11 +27,6 @@
 (setq erc-track-exclude-types '("JOIN" "NICK" "PART" "QUIT" "MODE"
 				"324" "329" "332" "333" "353" "477"))
 (setq erc-hide-list '("JOIN" "PART" "QUIT"))
-
-(defadvice erc-track-find-face (around erc-track-find-face-promote-query activate)
-  (if (erc-query-buffer-p) 
-      (setq ad-return-value (intern "erc-current-nick-face"))
-    ad-do-it))
 
 (defun x-urgency-hint (frame arg &optional source)
   (let* ((wm-hints (append (x-window-property 
@@ -45,6 +43,11 @@
 	      (logand flags #xFFFFFEFF)))
     (x-change-window-property "WM_HINTS" wm-hints frame "WM_HINTS" 32 t)))
 
+(defadvice erc-track-find-face (around erc-track-find-face-promote-query activate)
+  (if (erc-query-buffer-p) 
+      (x-urgency-hint (selected-frame) t)
+    ;;(setq ad-return-value (intern "erc-current-nick-face")))
+    ad-do-it))
 
 (setq erc-autojoin-channels-alist
           '(("freenode.net" "#emacs" "#archlinux" "#haskell" "#xmonad" "##c++")))
@@ -52,9 +55,6 @@
 (erc :server "localhost" :port 6667 :nick "boots")
 (setq erc-auto-query 'buffer)
 
-(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
 (global-set-key "\C-w" 'backward-kill-word)
@@ -70,6 +70,21 @@
 (add-hook 'haskell-mode-hook 'turn-on-haskell-ghci)
 
 (setq latex-block-names '("theorem" "corollary" "proof"))
+
+(defun cplusplus-query (search-string)
+  "Search for SEARCH-STRING on cplusplus.com"
+  (interactive "sSearch for: ")
+  (browse-url (concat "http://www.cplusplus.com/query/search.cgi?q="
+                      (url-hexify-string
+                       (encode-coding-string search-string 'utf-8)))))
+
+(defun sgi-query (search-string)
+  "Search for SEARCH-STRING in http://www.sgi.com/tech/stl/ "
+  (interactive "sSearch for: ")
+  (browse-url (concat "http://www.google.com/search?q=site:http://www.sgi.com/tech/stl/+"
+                      (url-hexify-string
+                       (encode-coding-string search-string 'utf-8)))))
+
 
 ;;(autoload 'markdown-mode "markdown-mode.el"
 ;;   "Major mode for editing Markdown files" t)

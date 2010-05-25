@@ -1,5 +1,3 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-
 echo
 fortune
 echo
@@ -42,8 +40,8 @@ source ~/.svn_completion
 #
 
 export BROWSER=firefox
-export EDITOR='emacs -nw'
-export PATH=$PATH:/usr/local/bin
+export EDITOR='emacs -nw -q'
+export PATH=$PATH:/usr/local/bin:$HOME/.cabal/bin
 CDPATH=.:
 export FANTOMDATADIR=/home/boots/fantom/trunk/testData/
 
@@ -92,6 +90,7 @@ function ff () { find . -type f -iname '*'"$@"'*' ; }
 function soffice() { command soffice "$@" & }
 function firefox() { command firefox "$@" & }
 function xpdf() { command xpdf "$@" & }
+function xchm() { command xchm "$@" & }
 function extract()      # Handy Extract Program.
 {
      if [ -f $1 ] ; then

@@ -44,6 +44,7 @@ export EDITOR='emacs -nw -q'
 export PATH=$PATH:/usr/local/bin:$HOME/.cabal/bin
 CDPATH=.:
 export FANTOMDATADIR=/home/boots/fantom/trunk/testData/
+export FANTOMBASEDIR=/home/boots/fantom/trunk/
 
 #
 # Alias Zone
@@ -87,7 +88,6 @@ alias g="grep"
 
 
 function ff () { find . -type f -iname '*'"$@"'*' ; }
-function soffice() { command soffice "$@" & }
 function firefox() { command firefox "$@" & }
 function xpdf() { command xpdf "$@" & }
 function xchm() { command xchm "$@" & }

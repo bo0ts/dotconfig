@@ -71,6 +71,10 @@
 
 (setq latex-block-names '("theorem" "corollary" "proof"))
 
+
+(setq c-default-style "stroustrup"
+      c-basic-offset 2)
+
 (defun cplusplus-query (search-string)
   "Search for SEARCH-STRING on cplusplus.com"
   (interactive "sSearch for: ")

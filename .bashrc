@@ -23,17 +23,15 @@ umask 022
 #
 # Shell Prompt
 #
+export PS1='\[\e[0;36m\]\u\[\e[m\] \[\e[1;37m\]\w\[\e[m\] \[\e[0;36m\]\$ \[\e[m\]\[\e[0;37m\]'
 
-export PS1="\[\033[1;35m\]\u\[\033[1;34m\]@\[\033[1;35m\]\h \[\033[1;34m\]/\W:\[\033[0m\]"
+#export PS1="\[\033[1;35m\]\u\[\033[1;34m\]@\[\033[1;35m\]\h \[\033[1;34m\]/\W:\[\033[0m\]"
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD}\007"'
 
 #
 # Completion
 #
 
-#[ -f /etc/bash_completion ] && source /etc/bash_completion
-#complete -cf sudo
-#complete -cf man
 source ~/.git-bash-completion.sh
 source ~/.svn_completion
 
@@ -42,7 +40,9 @@ source ~/.svn_completion
 #
 
 export BROWSER=firefox
-export EDITOR='emacs -nw'
+export EDITOR='emacsclient -t'
+
+export PATH=$PATH:/usr/local/bin:$HOME/.cabal/bin
 CDPATH=.:
 export FANTOMDATADIR=/home/boots/fantom/trunk/testData/
 #
@@ -56,7 +56,7 @@ alias ps='ps'
 alias ping='ping -c 5'
 alias f='find . -type f -name'
 alias cal='cal -m'
-
+alias config='git --git-dir=$HOME/.config.git/ --work-tree=$HOME'
 #-------------------------------------------------------------
 # The 'ls' family (this assumes you use a recent GNU ls)
 #-------------------------------------------------------------

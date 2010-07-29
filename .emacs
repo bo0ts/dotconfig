@@ -4,6 +4,7 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(inhibit-startup-screen t)
+ '(scheme-program-name "guile")
  '(standard-indent 2))
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
@@ -12,12 +13,16 @@
   ;; If there is more than one, they won't work right.
  )
 
+(server-start)
+
+(require 'quack)
+
 (load "auctex.el" nil t t)
 (load "preview-latex.el" nil t t)
 
 (require 'color-theme)
 (color-theme-initialize)
-(color-theme-gnome2)
+(color-theme-shaman)
 (set-fringe-mode 0)
 
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
@@ -32,13 +37,12 @@
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
 
+(load "/home/boots/.emacs.d/pastebin.el")
+
 (load "/usr/share/emacs/site-lisp/haskell-mode/haskell-site-file")
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-ghci)
 
-(setq latex-block-names '("theorem" "corollary" "proof"))
-
-;;(autoload 'markdown-mode "markdown-mode.el"
-;;   "Major mode for editing Markdown files" t)
-;;(setq auto-mode-alist
-;;   (cons '("\\.text" . markdown-mode) auto-mode-alist))
+(load-file (let ((coding-system-for-read 'utf-8))
+                (shell-command-to-string "agda-mode locate")))
+(put 'narrow-to-region 'disabled nil)

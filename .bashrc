@@ -1,5 +1,3 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-
 echo
 fortune
 echo
@@ -42,9 +40,12 @@ source ~/.svn_completion
 #
 
 export BROWSER=firefox
-export EDITOR='emacs -nw'
+export EDITOR='emacs -nw -q'
+export PATH=$PATH:/usr/local/bin:$HOME/.cabal/bin
 CDPATH=.:
 export FANTOMDATADIR=/home/boots/fantom/trunk/testData/
+export FANTOMBASEDIR=/home/boots/fantom/trunk/
+
 #
 # Alias Zone
 #
@@ -56,6 +57,7 @@ alias ps='ps'
 alias ping='ping -c 5'
 alias f='find . -type f -name'
 alias cal='cal -m'
+alias config='git --git-dir=$HOME/.config.git/ --work-tree=$HOME'
 
 #-------------------------------------------------------------
 # The 'ls' family (this assumes you use a recent GNU ls)
@@ -86,9 +88,9 @@ alias g="grep"
 
 
 function ff () { find . -type f -iname '*'"$@"'*' ; }
-function soffice() { command soffice "$@" & }
 function firefox() { command firefox "$@" & }
 function xpdf() { command xpdf "$@" & }
+function xchm() { command xchm "$@" & }
 function extract()      # Handy Extract Program.
 {
      if [ -f $1 ] ; then

@@ -26,13 +26,14 @@ then
 	ssh-add < /dev/null
 fi
 
-xset fp+ /usr/share/fonts/local/terminus
-xset fp+ /usr/share/fonts/TTF/
+#xset fp+ /usr/share/fonts/local/terminus
+#xset fp+ /usr/share/fonts/TTF/
 xset b 100 0 0
 xset r rate 300 100
 
 xmodmap $HOME/.Xmodmap
 emacs &
+urxvt -e ncmpcpp &
 
 exec xmonad
 

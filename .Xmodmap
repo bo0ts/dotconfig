@@ -1,0 +1,13 @@
+keycode 160 = XF86AudioMute
+keycode 176 = XF86AudioRaiseVolume
+keycode 174 = XF86AudioLowerVolume
+keycode 172 = XF86AudioPlay
+keycode 233 = Page_Down
+keycode 234 = Page_Up
+
+remove Lock = Caps_Lock
+remove Control = Control_L
+keysym Control_L = Caps_Lock
+keysym Caps_Lock = Control_L
+add Lock = Caps_Lock
+add Control = Control_L

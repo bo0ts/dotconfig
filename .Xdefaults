@@ -12,3 +12,4 @@ Emacs.font: Bitstream Vera Sans mono:size=10:antialise=true
 Emacs.fontBackend: xft
 Emacs.menuBar: off
 Emacs.toolBar: -1
+

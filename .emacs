@@ -17,8 +17,10 @@
   ;; If there is more than one, they won't work right.
  )
 
-(load "auctex.el" nil t t)
-(load "preview-latex.el" nil t t)
+
+;;
+;; setup
+;;
 
 (require 'color-theme)
 (require 'codepad)
@@ -26,6 +28,17 @@
 (color-theme-initialize)
 (color-theme-gnome2)
 (set-fringe-mode 0)
+
+(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+
+(global-set-key "\C-w" 'backward-kill-word)
+(global-set-key "\C-x\C-k" 'kill-region)
+(global-set-key "\C-c\C-k" 'kill-region)
+
+
+;;
+;; erc
+;;
 
 (require 'erc)
 (setq erc-track-exclude-types '("JOIN" "NICK" "PART" "QUIT" "MODE"
@@ -62,22 +75,29 @@
 (erc :server "localhost" :port 6667 :nick "boots")
 (setq erc-auto-query 'buffer)
 
-(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
-
-(global-set-key "\C-w" 'backward-kill-word)
-(global-set-key "\C-x\C-k" 'kill-region)
-(global-set-key "\C-c\C-k" 'kill-region)
-
-(setq TeX-auto-save t)
-(setq TeX-parse-self t)
-(setq require-final-newline nil)
+;;
+;; haskell
+;; 
 
 (load "/usr/share/emacs/site-lisp/haskell-mode/haskell-site-file")
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-ghci)
 
+;;
+;; latex
+;; 
+
+(setq TeX-auto-save t)
+(setq TeX-parse-self t)
+(setq require-final-newline nil)
+
+(load "auctex.el" nil t t)
+(load "preview-latex.el" nil t t)
 (setq latex-block-names '("theorem" "corollary" "proof"))
 
+;;
+;; c++
+;;
 
 (setq c-default-style "stroustrup"
       c-basic-offset 2)
@@ -96,8 +116,3 @@
                       (url-hexify-string
                        (encode-coding-string search-string 'utf-8)))))
 
-
-;;(autoload 'markdown-mode "markdown-mode.el"
-;;   "Major mode for editing Markdown files" t)
-;;(setq auto-mode-alist
-;;   (cons '("\\.text" . markdown-mode) auto-mode-alist))

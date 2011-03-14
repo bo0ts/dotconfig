@@ -3,7 +3,11 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
+ '(erc-modules (quote (autojoin button completion fill irccontrols keep-place list match menu move-to-prompt netsplit networks noncommands readonly ring stamp spelling track)))
  '(erc-nickserv-identify-mode (quote nick-change))
+ '(erc-play-sound nil)
+ '(erc-sound-mode t)
+ '(erc-try-new-nick-p nil)
  '(inhibit-startup-screen t)
  '(standard-indent 2))
 (custom-set-faces
@@ -27,6 +31,9 @@
 (setq erc-track-exclude-types '("JOIN" "NICK" "PART" "QUIT" "MODE"
 				"324" "329" "332" "333" "353" "477"))
 (setq erc-hide-list '("JOIN" "PART" "QUIT"))
+(setq erc-kill-buffer-on-part t)
+(setq erc-kill-server-buffer-on-quit t)
+
 
 (defun x-urgency-hint (frame arg &optional source)
   (let* ((wm-hints (append (x-window-property 
@@ -78,7 +85,7 @@
 (defun cplusplus-query (search-string)
   "Search for SEARCH-STRING on cplusplus.com"
   (interactive "sSearch for: ")
-  (browse-url (concat "http://www.cplusplus.com/query/search.cgi?q="
+  (browse-url (concat "http://www.cplusplus.com/search.do?q="
                       (url-hexify-string
                        (encode-coding-string search-string 'utf-8)))))
 

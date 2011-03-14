@@ -58,6 +58,7 @@ alias ping='ping -c 5'
 alias f='find . -type f -name'
 alias cal='cal -m'
 alias config='git --git-dir=$HOME/.config.git/ --work-tree=$HOME'
+alias cleantex='rm *+(.log|.aux)'
 
 #-------------------------------------------------------------
 # The 'ls' family (this assumes you use a recent GNU ls)

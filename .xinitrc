@@ -12,7 +12,7 @@ xrdb -merge $HOME/.Xdefaults
 
 xsetroot -cursor_name left_ptr
 xsetroot -solid '#80a0af'
-xsetbg $HOME/pics/wp/want.jpg 
+xsetbg $HOME/pics/wp/orvalho-1680x1050.jpg
 
 trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x2f4f4f --width 10 --height 17 &
 
@@ -26,8 +26,7 @@ then
 	ssh-add < /dev/null
 fi
 
-#xset fp+ /usr/share/fonts/local/terminus
-#xset fp+ /usr/share/fonts/TTF/
+xset fp+ /usr/share/fonts/TTF/
 xset b 100 0 0
 xset r rate 300 100
 

@@ -21,7 +21,7 @@ fullFloatFocused = withFocused $ \f -> windows =<< appEndo `fmap` runQuery
                    doFullFloat f
 
 myManageHook = composeAll
-               [ className =? "Namoroka" --> doShift "1"
+               [ className =? "Firefox" --> doShift "1"
                , className =? "Emacs" --> doShift "2"
                ] 
                <+> 

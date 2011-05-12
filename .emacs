@@ -9,7 +9,11 @@
  '(erc-sound-mode t)
  '(erc-try-new-nick-p nil)
  '(inhibit-startup-screen t)
- '(standard-indent 2))
+ '(org-agenda-files (quote ("~/everything/org/bdays.org" "~/everything/org/notes.org" "~/everything/uni/studium.org")))
+ '(org-archive-location "~/everything/org/archive.org::From %s")
+ '(org-time-stamp-rounding-minutes (quote (0 15)))
+ '(standard-indent 2)
+ '(url-max-redirections 30))
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
@@ -35,6 +39,7 @@
 (global-set-key "\C-x\C-k" 'kill-region)
 (global-set-key "\C-c\C-k" 'kill-region)
 
+(load "/usr/share/emacs/site-lisp/haskell-mode/haskell-site-file")
 
 ;;
 ;; erc
@@ -71,7 +76,7 @@
 
 (setq erc-autojoin-channels-alist
           '(("freenode.net" "#emacs" "#archlinux" "#haskell" "#xmonad" "##c++")))
-(erc :server "irc.freenode.net" :port 6667 :nick "bo0ts__")
+;; (erc :server "irc.freenode.net" :port 6667 :nick "bo0ts__")
 (erc :server "localhost" :port 6667 :nick "boots")
 (setq erc-auto-query 'buffer)
 
@@ -115,4 +120,40 @@
   (browse-url (concat "http://www.google.com/search?q=site:http://www.sgi.com/tech/stl/+"
                       (url-hexify-string
                        (encode-coding-string search-string 'utf-8)))))
+
+(add-to-list 'auto-mode-alist '("\\.glsl$" . c-mode))
+
+;;
+;; org-mode related
+;;
+(require 'org-install)
+
+(setq org-log-done t)
+(setq org-hide-leading-stars t)
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cb" 'org-iswitchb)
+
+(setq org-directory "~/everything/org")
+(setq org-default-notes-file (concat org-directory "/notes.org"))
+
+;;
+;; yas related
+;;
+
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/yas")
+(require 'yasnippet) ;; not yasnippet-bundle
+(yas/initialize)
+(yas/load-directory "/usr/share/emacs/site-lisp/yas/snippets")
+
+;;
+;; processing related
+;;
+
+(require 'processing-mode)
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/processing-mode")
+(autoload 'processing-mode "processing-mode" "Processing mode" t)
+(setq processing-location "/usr/share/processing/")
+(add-to-list 'auto-mode-alist '("\\.pde$" . processing-mode))
 

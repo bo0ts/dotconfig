@@ -4,6 +4,8 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(inhibit-startup-screen t)
+ '(org-agenda-files (quote ("~/everything/org/notes.org" "~/everything/org/bdays.org" 
+			    "~/everything/uni/studium.org" "~/everything/gsoc/gsoc.org")))
  '(quack-default-program "guile")
  '(quack-dir "~/.quack")
  '(scheme-program-name "guile")
@@ -15,8 +17,6 @@
   ;; If there is more than one, they won't work right.
  )
 
-(server-start)
-
 (require 'quack)
 
 (load "auctex.el" nil t t)
@@ -24,7 +24,10 @@
 
 (require 'color-theme)
 (color-theme-initialize)
-(color-theme-shaman)
+(load "/home/boots/.emacs.d/zenburn.el")
+(require 'zenburn)
+(zenburn)
+
 (set-fringe-mode 0)
 
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
@@ -35,6 +38,8 @@
 (global-set-key "\C-w" 'backward-kill-word)
 (global-set-key "\C-x\C-k" 'kill-region)
 (global-set-key "\C-c\C-k" 'kill-region)
+(global-set-key [f6] 'recompile)
+
 
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
@@ -53,11 +58,17 @@
       c-basic-offset 2)
 
 
+
+;; yasnippets
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/yas")
+(require 'yasnippet) ;; not yasnippet-bundle
+(yas/initialize)
+(yas/load-directory "/usr/share/emacs/site-lisp/yas/snippets")
+
 ;;org-mode related
+(require 'org-install)
 
-(setq org-agenda-files (list "~/org/common.org"
-			     "~/org/uni.org"))
-
+(setq org-archive-location "~/everything/org/archive.org::From %s")
 (setq org-log-done t)
 (setq org-hide-leading-stars t)
 
@@ -73,6 +84,9 @@
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
+
+(setq org-directory "~/everything/org")
+(setq org-default-notes-file (concat org-directory "/notes.org"))
 
 ;; allow for export=>beamer by placing
 

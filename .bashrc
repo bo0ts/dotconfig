@@ -40,7 +40,7 @@ source ~/.svn_completion
 #
 
 export BROWSER=firefox
-export EDITOR='emacsclient -t'
+export EDITOR='emacs'
 
 export PATH=$PATH:/usr/local/bin:$HOME/.cabal/bin
 CDPATH=.:

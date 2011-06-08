@@ -36,8 +36,8 @@ main = do
  	, layoutHook = smartBorders $ avoidStruts $ layoutHook defaultConfig
         , logHook = dynamicLogWithPP $ xmobarPP
                         { ppOutput = hPutStrLn xmproc
-                        , ppTitle = xmobarColor "red" "" . shorten 50
-                        , ppUrgent =xmobarColor "red" "black" . xmobarStrip
+                        , ppTitle = xmobarColor "#dfaf8f" "" . shorten 50
+                        , ppUrgent =xmobarColor "#ac7373" "black" . xmobarStrip
                         }
         , modMask = mod4Mask
         } `additionalKeys`

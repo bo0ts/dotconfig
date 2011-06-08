@@ -1,10 +1,9 @@
 URxvt*externalBorder:	0
+URxvt*internalBorder:	0
 URxvt*borderLess: 	false
 URxvt*scrollBar:	false
-URxvt*tintColor:	grey
-URxvt*shading:		40
-URxvt*background:	#456345
-URxvt*foreground:	White
+URxvt*background:	#3f3f3f
+URxvt*foreground:	#dcdccc
 URxvt*font:		xft:Bitstream Vera Sans mono:size=8:antialise=true
 URxvt*boldFont:		xft:Bitstream Vera Sans mono:size=8:antialise=true
 
@@ -12,4 +11,5 @@ Emacs.font: Bitstream Vera Sans mono:size=10:antialise=true
 Emacs.fontBackend: xft
 Emacs.menuBar: off
 Emacs.toolBar: -1
+Emacs.verticalScrollBars: off
 

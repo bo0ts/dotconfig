@@ -6,6 +6,8 @@ echo
 ddate +'Today is %{%A, the %e of %B%}, %Y. %N%nCelebrate %H'
 echo
 
+
+
 #
 # Shell Options
 #
@@ -40,9 +42,9 @@ source ~/.svn_completion
 #
 
 export BROWSER=firefox
-export EDITOR='emacs'
+export EDITOR='emacsclient -t'
 
-export PATH=$PATH:/usr/local/bin:$HOME/.cabal/bin
+export PATH=$PATH:/usr/local/bin
 CDPATH=.:
 export FANTOMDATADIR=/home/boots/fantom/trunk/testData/
 #
@@ -60,6 +62,9 @@ alias config='git --git-dir=$HOME/.config.git/ --work-tree=$HOME'
 #-------------------------------------------------------------
 # The 'ls' family (this assumes you use a recent GNU ls)
 #-------------------------------------------------------------
+# dircolors
+eval `dircolors -b .dircolors`
+
 alias ll="ls -l --group-directories-first"
 alias ls='ls -hF --color'  # add colors for filetype recognition
 alias la='ls -Al'          # show hidden files
@@ -68,7 +73,7 @@ alias lk='ls -lSr'         # sort by size, biggest last
 alias lc='ls -ltcr'        # sort by and show change time, most recent last
 alias lu='ls -ltur'        # sort by and show access time, most recent last
 alias lt='ls -ltr'         # sort by date, most recent last
-alias lm='ls -al |more'    # pipe through 'more'
+alias lm='ls -al |less'    # pipe through 'more'
 alias lr='ls -lR'          # recursive ls
 alias tree='tree -Csu'     # nice alternative to 'recursive ls'
 

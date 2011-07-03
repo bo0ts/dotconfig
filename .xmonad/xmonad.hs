@@ -3,6 +3,7 @@
 -}
 
 import XMonad
+import XMonad.StackSet
 import XMonad.Actions.Search
 import XMonad.Prompt
 import XMonad.Hooks.DynamicLog
@@ -17,6 +18,8 @@ import XMonad.Hooks.SetWMName
 import XMonad.Hooks.ManageHelpers
 import Data.Monoid
 
+import XMonad.Layout.Tabbed
+
 myManageHook = composeAll
                [ className =? "Firefox" --> doShift "1"
                , className =? "Emacs" --> doShift "2"
@@ -24,7 +27,17 @@ myManageHook = composeAll
                <+> 
                composeOne [ isFullscreen -?> doFullFloat ]
                <+>
-               scratchpadManageHookDefault
+               scratchHook
+-- scratchpadManageHookDefault
+
+scratchHook = scratchpadManageHook (RationalRect l t w h)
+  where
+    h = 0.3     -- terminal height, 10%
+    w = 1       -- terminal width, 100%
+    t = 0.67   -- distance from top edge, 90%
+    l = 1 - w   -- distance from left edge, 0%
+
+tabbedLayout = simpleTabbedAlways ||| Full
 
 main = do
     xmproc <- spawnPipe "xmobar /home/boots/.xmobarrc"

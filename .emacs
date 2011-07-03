@@ -1,28 +1,23 @@
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
  '(erc-modules (quote (autojoin button completion fill irccontrols keep-place list match menu move-to-prompt netsplit networks noncommands readonly ring stamp spelling track)))
  '(erc-nickserv-identify-mode (quote nick-change))
  '(erc-play-sound nil)
  '(erc-sound-mode t)
  '(erc-try-new-nick-p nil)
+ '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
+ '(mediawiki-site-alist (quote (("Wikipedia" "http://en.wikipedia.org/w/" "username" "password" "Main Page") ("CGAL" "https://cgal.geometryfactory.com/CGAL/Members/w/" "Pmoeller" "para?gon" "Main Page"))))
  '(org-agenda-files (quote ("~/everything/org/notes.org")))
  '(org-archive-location "~/everything/org/archive.org::From %s")
+ '(org-modules (quote (org-bbdb org-bibtex org-docview org-gnus org-info org-jsinfo org-habit org-irc org-mew org-mhe org-rmail org-vm org-wl org-w3m)))
  '(quack-default-program "guile")
  '(quack-dir "~/.quack")
  '(scheme-program-name "guile")
  '(standard-indent 2)
- '(url-max-redirections 30))
+ '(url-max-redirections 30)
+ '(yas/prompt-functions (quote (yas/dropdown-prompt yas/ido-prompt yas/completing-prompt))))
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
  '(org-hide ((((background dark)) (:foreground "#2b2b2b")))))
-
 
 ;;
 ;; setup
@@ -50,6 +45,7 @@
 (global-set-key [f6] 'recompile)
 
 (require 'pastebin)
+(require 'mediawiki)
 
 ;;
 ;; erc
@@ -69,7 +65,7 @@
 (setq erc-auto-query 'buffer)
 
 ;;
-;; latex
+;; latex/auctex
 ;; 
 
 (setq TeX-auto-save nil)
@@ -79,12 +75,18 @@
 (load "auctex.el" nil t t)
 (load "preview-latex.el" nil t t)
 
+(add-hook 'TeX-mode-hook
+          (lambda ()
+            (set (make-local-variable 'compile-command)
+                 (concat "pdflatex -interaction nonstopmode -file-line-error "
+                         (buffer-name)))))
 
+(add-hook 'TeX-mode-hook 'flyspell-mode)
+          
 
 ;;
 ;; haskell-related
 ;;
-
 
 (load "/usr/share/emacs/site-lisp/haskell-mode/haskell-site-file")
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
@@ -112,7 +114,9 @@
                        (encode-coding-string search-string 'utf-8)))))
 
 (add-to-list 'auto-mode-alist '("\\.glsl$" . c-mode))
+(add-to-list 'auto-mode-alist '("\\.h$" . c++-mode))
 
+(add-hook 'c++-mode-hook 'flyspell-prog-mode)
 
 ;; 
 ;; yasnippets
@@ -121,11 +125,34 @@
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/yas")
 (require 'yasnippet) ;; not yasnippet-bundle
 (yas/initialize)
-(yas/load-directory "/usr/share/emacs/site-lisp/yas/snippets")
+(setq yas/root-directory "~/.emacs.d/snippets")
+(yas/load-directory yas/root-directory)
 
 ;;
 ;;org-mode related
 ;;
+
+(setq org-agenda-custom-commands '(("h" "Daily habits" ((agenda ""))
+                                    ((org-agenda-show-log t) (org-agenda-ndays 7)
+                                     (org-agenda-log-mode-items '(state))
+                                     (org-agenda-skip-function '(org-agenda-skip-entry-if
+                                                                 'notregexp ":DAILY:"))
+                                     ))
+                                   ("d" "Weekly CGAL report" 
+                                    ((agenda "" ((org-agenda-span 'week)
+                                                 (org-agenda-show-log t)
+                                                 (org-agenda-filter-preset '("+cgal"))
+                                                 (org-agenda-log-mode-items '(closed))))
+                                     ))
+                                   ;; others
+                                   ))
+
+(defun www-get-page-title (url)
+  (interactive "sURL: ")
+  (with-current-buffer (url-retrieve-synchronously url)
+    (goto-char 0)
+    (re-search-forward "<title>\\(.*\\)<[/]title>" nil t 1)
+    (match-string 1)))
 
 (require 'org-install)
 
@@ -135,7 +162,7 @@
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
-
+(add-hook 'org-mode-hook 'flyspell-mode)
 
 (defun org-mode-reftex-setup ()
   (load-library "reftex")
@@ -147,68 +174,6 @@
 
 (setq org-directory "~/everything/org")
 (setq org-default-notes-file (concat org-directory "/notes.org"))
-
-;; ;; allow for export=>beamer by placing
-
-;; ;; #+LaTeX_CLASS: beamer in org files
-;; (unless (boundp 'org-export-latex-classes)
-;;   (setq org-export-latex-classes nil))
-
-;; (add-to-list 'org-export-latex-classes
-;;              '("article"
-;;                "\\documentclass{article}"
-;;                ("\\section{%s}" . "\\section*{%s}")))
-;; (add-to-list 'org-export-latex-classes
-;;   ;; beamer class, for presentations
-;;   '("beamer"
-;;      "\\documentclass[11pt]{beamer}\n
-;;       \\mode<{{{beamermode}}}>\n
-;;       \\usetheme{{{{beamertheme}}}}\n
-;;       \\usecolortheme{{{{beamercolortheme}}}}\n
-;;       \\beamertemplateballitem\n
-;;       \\setbeameroption{show notes}
-;;       \\usepackage[utf8]{inputenc}\n
-;;       \\usepackage[T1]{fontenc}\n
-;;       \\usepackage{hyperref}\n
-;;       \\usepackage{color}
-;;       \\usepackage{listings}
-;;       \\lstset{numbers=none,language=[ISO]C++,tabsize=4,
-;;   frame=single,
-;;   basicstyle=\\small,
-;;   showspaces=false,showstringspaces=false,
-;;   showtabs=false,
-;;   keywordstyle=\\color{blue}\\bfseries,
-;;   commentstyle=\\color{red},
-;;   }\n
-;;       \\usepackage{verbatim}\n
-;;       \\institute{{{{beamerinstitute}}}}\n          
-;;        \\subject{{{{beamersubject}}}}\n"
-
-;;      ("\\section{%s}" . "\\section*{%s}")
-     
-;;      ("\\begin{frame}[fragile]\\frametitle{%s}"
-;;        "\\end{frame}"
-;;        "\\begin{frame}[fragile]\\frametitle{%s}"
-;;        "\\end{frame}")))
-
-;;   ;; letter class, for formal letters
-
-;; (add-to-list 'org-export-latex-classes
-
-;; 	     '("letter"
-;;      "\\documentclass[11pt]{letter}\n
-;;       \\usepackage[utf8]{inputenc}\n
-;;       \\usepackage[T1]{fontenc}\n
-;;       \\usepackage{color}"
-     
-;;      ("\\section{%s}" . "\\section*{%s}")
-;;      ("\\subsection{%s}" . "\\subsection*{%s}")
-;;      ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-;;      ("\\paragraph{%s}" . "\\paragraph*{%s}")
-;;      ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
-;; 	     '("article"
-;; 	       "\\documentclass{article}"
-;; 	       ("\\section{%s}" . "\\section*{%s}")))
 
 ;;
 ;; ispell dictionaries
@@ -223,3 +188,10 @@
     ))
 
 (global-set-key (kbd "<f8>")   'fd-switch-dictionary)
+
+;;
+;; emacs disabled
+;;
+
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)

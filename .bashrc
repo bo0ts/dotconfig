@@ -22,7 +22,7 @@ umask 022
 # Shell Prompt
 #
 
-export PS1="\[\033[1;35m\]\u\[\033[1;34m\]@\[\033[1;35m\]\h \[\033[1;34m\]/\W:\[\033[0m\]"
+export PS1='\[\e[0;36m\]\u\[\e[m\] \[\e[1;37m\]\w\[\e[m\] \[\e[0;36m\]\$ \[\e[m\]\[\e[0;37m\]'
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD}\007"'
 
 #

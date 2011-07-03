@@ -1,25 +1,13 @@
-!------------
-!True Transparency
-!------------
-!set to 32-bit for real transparency (compositing required (see xcompmgr)
-!urxvt*depth:             32
-!transparent=0000 opaque=ffff
-!urxvt*background: rgba:1111/0000/0000/0000
-!urxvt*background: rgba:1111/1111/1111/0000
-
-
 URxvt*externalBorder:	0
+URxvt*internalBorder:	0
 URxvt*borderLess: 	false
 URxvt*scrollBar:	false
-URxvt*transparent:	true
-URxvt*tintColor:	grey
-URxvt*shading:		40
-URxvt*background:	darkslategray
-URxvt*foreground:	wheat
+URxvt*background:	#3f3f3f
+URxvt*foreground:	#dcdccc
 URxvt*font:		xft:Bitstream Vera Sans mono:size=10:antialise=true
 URxvt*boldFont:		xft:Bitstream Vera Sans mono:size=10:antialise=true
 
-Emacs.font: Bitstream Vera Sans mono:size=12:antialise=true
+Emacs.font: Bitstream Vera Sans mono:size=10:antialise=true
 Emacs.fontBackend: xft
 Emacs.menuBar: off
 Emacs.toolBar: -1

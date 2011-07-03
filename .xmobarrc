@@ -1,6 +1,6 @@
-Config { font = "-misc-fixed-*-*-*-*-13-*-*-*-*-*-*-*"
-       , bgColor = "darkslategray"
-       , fgColor = "wheat"
+Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
+       , bgColor = "#3f3f3f"
+       , fgColor = "#dcdccc"
        , position = TopW L 90
        , lowerOnStart = True
        , commands = [ Run Weather "EDDP" ["-t","<tempC>C","-L","14","-H","26","--normal","green","--high","red","--low","lightblue"] 36000

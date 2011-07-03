@@ -29,8 +29,9 @@
 (require 'color-theme)
 (require 'codepad)
 
-(color-theme-initialize)
-(color-theme-gnome2)
+(load "/home/boots/.emacs.d/zenburn.el")
+(require 'zenburn)
+(zenburn)
 (set-fringe-mode 0)
 
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
@@ -38,8 +39,6 @@
 (global-set-key "\C-w" 'backward-kill-word)
 (global-set-key "\C-x\C-k" 'kill-region)
 (global-set-key "\C-c\C-k" 'kill-region)
-
-(load "/usr/share/emacs/site-lisp/haskell-mode/haskell-site-file")
 
 ;;
 ;; erc
@@ -51,7 +50,7 @@
 (setq erc-hide-list '("JOIN" "PART" "QUIT"))
 (setq erc-kill-buffer-on-part t)
 (setq erc-kill-server-buffer-on-quit t)
-
+(setq erc-auto-query 'buffer)
 
 (defun x-urgency-hint (frame arg &optional source)
   (let* ((wm-hints (append (x-window-property 
@@ -77,8 +76,8 @@
 (setq erc-autojoin-channels-alist
           '(("freenode.net" "#emacs" "#archlinux" "#haskell" "#xmonad" "##c++")))
 ;; (erc :server "irc.freenode.net" :port 6667 :nick "bo0ts__")
-(erc :server "localhost" :port 6667 :nick "boots")
-(setq erc-auto-query 'buffer)
+;; (erc :server "localhost" :port 6667 :nick "boots")
+
 
 ;;
 ;; haskell

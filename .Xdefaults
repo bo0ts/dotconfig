@@ -4,10 +4,10 @@ URxvt*borderLess: 	false
 URxvt*scrollBar:	false
 URxvt*background:	#3f3f3f
 URxvt*foreground:	#dcdccc
-URxvt*font:		xft:Bitstream Vera Sans mono:size=8:antialise=true
-URxvt*boldFont:		xft:Bitstream Vera Sans mono:size=8:antialise=true
+URxvt*font:		xft:Bitstream Vera Sans Mono:size=8:antialise=true
+URxvt*boldFont:		xft:Bitstream Vera Sans Mono:size=8:antialise=true
 
-Emacs.font: Bitstream Vera Sans mono:size=10:antialise=true
+Emacs.font: Bitstream Vera Sans Mono:size=10:antialise=true
 Emacs.fontBackend: xft
 Emacs.menuBar: off
 Emacs.toolBar: -1

@@ -1,4 +1,8 @@
 (custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
  '(erc-modules (quote (autojoin button completion fill irccontrols keep-place list match menu move-to-prompt netsplit networks noncommands readonly ring stamp spelling track)))
  '(erc-nickserv-identify-mode (quote nick-change))
  '(erc-play-sound nil)
@@ -6,7 +10,7 @@
  '(erc-try-new-nick-p nil)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
- '(mediawiki-site-alist (quote (("Wikipedia" "http://en.wikipedia.org/w/" "username" "password" "Main Page") ("CGAL" "https://cgal.geometryfactory.com/CGAL/Members/w/" "Pmoeller" "para?gon" "Main Page"))))
+ '(mediawiki-site-alist (quote (("Wikipedia" "http://en.wikipedia.org/w/" "username" "password" "Main Page") ("CGAL" "https://cgal.geometryfactory.com/CGAL/Members/w/" "Pmoeller" "" "Main Page"))))
  '(org-agenda-files (quote ("~/everything/org/notes.org")))
  '(org-archive-location "~/everything/org/archive.org::From %s")
  '(org-modules (quote (org-bbdb org-bibtex org-docview org-gnus org-info org-jsinfo org-habit org-irc org-mew org-mhe org-rmail org-vm org-wl org-w3m)))
@@ -17,6 +21,10 @@
  '(url-max-redirections 30)
  '(yas/prompt-functions (quote (yas/dropdown-prompt yas/ido-prompt yas/completing-prompt))))
 (custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
  '(org-hide ((((background dark)) (:foreground "#2b2b2b")))))
 
 ;;

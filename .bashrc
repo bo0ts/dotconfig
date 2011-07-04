@@ -4,6 +4,8 @@ echo
 ddate +'Today is %{%A, the %e of %B%}, %Y. %N%nCelebrate %H'
 echo
 
+
+
 #
 # Shell Options
 #
@@ -21,17 +23,14 @@ umask 022
 #
 # Shell Prompt
 #
-
 export PS1='\[\e[0;36m\]\u\[\e[m\] \[\e[1;37m\]\w\[\e[m\] \[\e[0;36m\]\$ \[\e[m\]\[\e[0;37m\]'
+#export PS1="\[\033[1;35m\]\u\[\033[1;34m\]@\[\033[1;35m\]\h \[\033[1;34m\]/\W:\[\033[0m\]"
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD}\007"'
 
 #
 # Completion
 #
 
-#[ -f /etc/bash_completion ] && source /etc/bash_completion
-#complete -cf sudo
-#complete -cf man
 source ~/.git-bash-completion.sh
 source ~/.svn_completion
 
@@ -40,8 +39,9 @@ source ~/.svn_completion
 #
 
 export BROWSER=firefox
-export EDITOR='emacs -nw -q'
-export PATH=$PATH:/usr/local/bin:$HOME/.cabal/bin
+export EDITOR='emacsclient -t'
+export PATH=$PATH:/usr/local/bin
+
 CDPATH=.:
 export FANTOMDATADIR=/home/boots/fantom/trunk/testData/
 export FANTOMBASEDIR=/home/boots/fantom/trunk/
@@ -63,6 +63,9 @@ alias cleantex='rm *+(.log|.aux)'
 #-------------------------------------------------------------
 # The 'ls' family (this assumes you use a recent GNU ls)
 #-------------------------------------------------------------
+# dircolors
+eval `dircolors -b .dircolors`
+
 alias ll="ls -l --group-directories-first"
 alias ls='ls -hF --color'  # add colors for filetype recognition
 alias la='ls -Al'          # show hidden files
@@ -71,7 +74,7 @@ alias lk='ls -lSr'         # sort by size, biggest last
 alias lc='ls -ltcr'        # sort by and show change time, most recent last
 alias lu='ls -ltur'        # sort by and show access time, most recent last
 alias lt='ls -ltr'         # sort by date, most recent last
-alias lm='ls -al |more'    # pipe through 'more'
+alias lm='ls -al |less'    # pipe through 'more'
 alias lr='ls -lR'          # recursive ls
 alias tree='tree -Csu'     # nice alternative to 'recursive ls'
 

@@ -3,13 +3,12 @@
 
 # .xinitrc
 
-xrandr -s 0
 xscreensaver -no-splash &
-
 xrdb -merge $HOME/.Xdefaults
 
 xsetroot -cursor_name left_ptr
 xsetroot -solid '#80a0af'
+
 xsetbg $HOME/pics/wp/orvalho-1680x1050.jpg
 
 trayer --edge top --align right --SetDockType true --SetPartialStrut true \
@@ -27,9 +26,11 @@ fi
 
 xset fp+ /usr/share/fonts/TTF/
 xset b 100 0 0
-xset r rate 300 100
+xset r rate 150
 
 xmodmap $HOME/.Xmodmap
+
+syndaemon -i 1 -d
 emacs &
 urxvt -e ncmpcpp &
 

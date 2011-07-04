@@ -12,8 +12,8 @@ xsetroot -cursor_name left_ptr
 xsetroot -solid '#80a0af'
 xsetbg $HOME/pics/wp/orvalho-1680x1050.jpg
 
-# trayer --edge top --align right --SetDockType true --SetPartialStrut true \
-#     --expand true --transparent true --alpha 0 --tint 0x3f3f3f --width 10 --height 17 &
+trayer --edge top --align right --SetDockType true --SetPartialStrut true \
+    --expand true --transparent true --alpha 0 --tint 0x3f3f3f --width 10 --height 8 &
 
 # ssh agent
 id1=$HOME/.ssh/identity

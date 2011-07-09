@@ -9,9 +9,9 @@ Config { font = "-misc-fixed-*-*-*-*-9-*-*-*-*-*-*-*"
                     , Run Swap [] 10
                     , Run Date "%a %b %_d %k:%M" "date" 10
                     , Run StdinReader
-		    , Run Battery ["-t","Bat: <left>"] 10
+                    , Run Com "sh" ["~/.xmonad/mpd.sh"] "mpd" 10
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %cpu% | %memory% | %swap% | %battery% | %date% | %EDDP%"
+       , template = "%StdinReader% | %mpd% }{ %cpu% | %memory% | %swap% | %date% | %EDDP%"
        }

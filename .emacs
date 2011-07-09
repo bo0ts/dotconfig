@@ -90,6 +90,13 @@
 
 (setq erc-autojoin-channels-alist
       '(("freenode.net" "#emacs" "#archlinux" "#haskell" "#xmonad" "##c++")))
+
+(defun irc-start ()
+  (interactive)
+  (erc :server "irc.freenode.net" :port 6667 :nick "bo0ts__")
+  (erc :server "localhost" :port 6667 :nick "boots")
+  )
+
 ;; (erc :server "irc.freenode.net" :port 6667 :nick "bo0ts__")
 ;; (erc :server "localhost" :port 6667 :nick "boots")
 

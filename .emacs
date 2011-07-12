@@ -37,11 +37,9 @@
 (server-start)
 
 (require 'grep-edit)
-
 (require 'color-theme)
 (require 'color-theme-zenburn)
 (color-theme-zenburn)
-
 (set-fringe-mode 0)
 
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
@@ -53,6 +51,10 @@
 
 (require 'codepad)
 (require 'mediawiki)
+
+(require 'keyfreq)
+(keyfreq-mode 1)
+(keyfreq-autosave-mode 1)
 
 ;;
 ;; erc
@@ -194,12 +196,24 @@
                                    ;; others
                                    ))
 
-(defun www-get-page-title (url)
-  (interactive "sURL: ")
-  (with-current-buffer (url-retrieve-synchronously url)
-    (goto-char 0)
-    (re-search-forward "<title>\\(.*\\)<[/]title>" nil t 1)
-    (match-string 1)))
+(defun www-get-page-title ()
+  (interactive)
+  (let (transform-start
+        transform-end
+        url)
+    (if mark-active
+        (progn
+          (setq transform-start (region-beginning))
+          (setq transform-end (region-end))
+          (deactivate-mark))
+      (setq transform-start (point-min))
+      (setq transform-end (point-max)))
+    (message (buffer-substring transform-start transform-end))
+    (message (url-retrieve-synchronously (buffer-substring transform-start transform-end)))))
+
+    ;; (goto-char 0)
+    ;; (re-search-forward "<title>\\(.*\\)<[/]title>" nil t 1)
+    ;; (match-string 1)))
 
 (require 'org-install)
 

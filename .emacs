@@ -3,6 +3,7 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
+ '(calendar-week-start-day 1)
  '(erc-modules (quote (autojoin button completion fill irccontrols keep-place list match menu move-to-prompt netsplit networks noncommands readonly ring stamp spelling track)))
  '(erc-nickserv-identify-mode (quote nick-change))
  '(erc-play-sound nil)
@@ -13,7 +14,9 @@
  '(mediawiki-site-alist (quote (("Wikipedia" "http://en.wikipedia.org/w/" "username" "password" "Main Page") ("CGAL" "https://cgal.geometryfactory.com/CGAL/Members/w/" "Pmoeller" "" "Main Page"))))
  '(org-agenda-files (quote ("~/everything/org/notes.org")))
  '(org-archive-location "~/everything/org/archive.org::From %s")
- '(org-capture-templates (quote (("l" "Link" entry (file+headline "~/everything/org/notes.org" "Links") "* TODO %(get-page-title (current-kill 0))" :immediate-finish t) ("t" "Task" entry (file+headline "~/everything/org/notes.org" "Tasks") "* TODO %?\n  %u\n  %a"))))
+ '(org-capture-templates (quote (("l" "Link" entry (file+headline "~/everything/org/notes.org" "Links") "* TODO %(get-page-title (current-kill 0))" :immediate-finish t) ("t" "Task" entry (file+headline "~/everything/org/notes.org" "Tasks") "* TODO %?
+  %u
+  %a" :prepend t))))
  '(org-modules (quote (org-bbdb org-bibtex org-docview org-gnus org-info org-jsinfo org-habit org-irc org-mew org-mhe org-rmail org-vm org-wl org-w3m)))
  '(org-time-stamp-rounding-minutes (quote (0 15)))
  '(standard-indent 2)

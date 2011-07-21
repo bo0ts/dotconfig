@@ -117,7 +117,7 @@ function extract()      # Handy Extract Program.
      fi
 }
 
-
+source ~/use_man_tools
 
 #-------------------------------------------------------------
 # tailoring 'less'

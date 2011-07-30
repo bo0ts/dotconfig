@@ -67,6 +67,6 @@ main = do
         , ((mod4Mask .|. shiftMask, xK_n), scratchpadSpawnActionTerminal "urxvt")
         , ((mod4Mask, xK_o), promptSearch greenXPConfig google)
         , ((mod4Mask .|. shiftMask, xK_b), focusUrgent)
-        , ((mod4Mask, xK_p), spawn "exe=`dmenu_run | dmenu` && eval \"exec $exe\"")
+        , ((mod4Mask, xK_p), spawn "dmenu_run")
         ]
 

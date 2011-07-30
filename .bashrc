@@ -117,7 +117,11 @@ function extract()      # Handy Extract Program.
      fi
 }
 
+#-------------------------------------------------------------
+# cgal tools
+#-------------------------------------------------------------
 source ~/use_man_tools
+export CGAL_DIR=/home/boots/prog/cgal/next/build/
 
 #-------------------------------------------------------------
 # tailoring 'less'

@@ -1,0 +1,3 @@
+#name : for(iterator it = v.begin(); it != v.end(); ++it) { ... }
+# --
+${1:v}.begin(), $1.end()

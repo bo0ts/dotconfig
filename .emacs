@@ -41,6 +41,7 @@
 (require 'color-theme)
 (require 'color-theme-zenburn)
 (color-theme-zenburn)
+
 (set-fringe-mode 0)
 
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
@@ -183,6 +184,7 @@
 ;;
 
 (require 'org-install)
+(require 'org-protocol)
 
 (setq org-log-done t)
 (setq org-hide-leading-stars t)

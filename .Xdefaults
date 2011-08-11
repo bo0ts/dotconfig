@@ -7,7 +7,7 @@ URxvt*foreground:	#dcdccc
 URxvt*font:		xft:Bitstream Vera Sans mono:size=10:antialise=true
 URxvt*boldFont:		xft:Bitstream Vera Sans mono:size=10:antialise=true
 
-Emacs.font: Bitstream Vera Sans mono:size=10:antialise=true
+Emacs.font: Bitstream Vera Sans mono:size=12:antialise=true
 Emacs.fontBackend: xft
 Emacs.menuBar: off
 Emacs.toolBar: -1

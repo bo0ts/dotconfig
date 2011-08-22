@@ -1,5 +1,3 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-
 echo
 fortune
 echo
@@ -26,7 +24,6 @@ umask 022
 # Shell Prompt
 #
 export PS1='\[\e[0;36m\]\u\[\e[m\] \[\e[1;37m\]\w\[\e[m\] \[\e[0;36m\]\$ \[\e[m\]\[\e[0;37m\]'
-
 #export PS1="\[\033[1;35m\]\u\[\033[1;34m\]@\[\033[1;35m\]\h \[\033[1;34m\]/\W:\[\033[0m\]"
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD}\007"'
 
@@ -43,10 +40,12 @@ source ~/.svn_completion
 
 export BROWSER=firefox
 export EDITOR='emacsclient -t'
-
 export PATH=$PATH:/usr/local/bin
+
 CDPATH=.:
 export FANTOMDATADIR=/home/boots/fantom/trunk/testData/
+export FANTOMBASEDIR=/home/boots/fantom/trunk/
+
 #
 # Alias Zone
 #
@@ -59,6 +58,8 @@ alias ping='ping -c 5'
 alias f='find . -type f -name'
 alias cal='cal -m'
 alias config='git --git-dir=$HOME/.config.git/ --work-tree=$HOME'
+alias cleantex='rm *+(.log|.aux)'
+
 #-------------------------------------------------------------
 # The 'ls' family (this assumes you use a recent GNU ls)
 #-------------------------------------------------------------
@@ -91,9 +92,9 @@ alias g="grep"
 
 
 function ff () { find . -type f -iname '*'"$@"'*' ; }
-function soffice() { command soffice "$@" & }
 function firefox() { command firefox "$@" & }
 function xpdf() { command xpdf "$@" & }
+function xchm() { command xchm "$@" & }
 function extract()      # Handy Extract Program.
 {
      if [ -f $1 ] ; then

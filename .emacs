@@ -1,30 +1,31 @@
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(erc-modules (quote (autojoin button completion fill irccontrols keep-place list match menu move-to-prompt netsplit networks noncommands readonly ring stamp spelling track)))
  '(erc-nickserv-identify-mode (quote nick-change))
  '(erc-play-sound nil)
  '(erc-sound-mode t)
  '(erc-try-new-nick-p nil)
+ '(standard-indent 2)
+ '(url-max-redirections 30)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(mediawiki-site-alist (quote (("Wikipedia" "http://en.wikipedia.org/w/" "username" "password" "Main Page") ("CGAL" "https://cgal.geometryfactory.com/CGAL/Members/w/" "Pmoeller" "" "Main Page"))))
  '(org-agenda-files (quote ("~/everything/org/notes.org")))
  '(org-archive-location "~/everything/org/archive.org::From %s")
+ '(org-time-stamp-rounding-minutes (quote (0 15)))
+ '(org-archive-location "~/everything/org/archive.org::From %s")
  '(org-modules (quote (org-bbdb org-bibtex org-docview org-gnus org-info org-jsinfo org-habit org-irc org-mew org-mhe org-rmail org-vm org-wl org-w3m)))
- '(quack-default-program "guile")
- '(quack-dir "~/.quack")
- '(scheme-program-name "guile")
  '(standard-indent 2)
  '(url-max-redirections 30)
  '(yas/prompt-functions (quote (yas/dropdown-prompt yas/ido-prompt yas/completing-prompt))))
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(org-hide ((((background dark)) (:foreground "#2b2b2b")))))
 
 ;;
@@ -34,8 +35,6 @@
 (add-to-list 'load-path "/home/boots/.emacs.d")
 
 (server-start)
-
-(require 'quack)
 
 (require 'grep-edit)
 
@@ -52,7 +51,7 @@
 (global-set-key "\C-c\C-k" 'kill-region)
 (global-set-key [f6] 'recompile)
 
-(require 'pastebin)
+(require 'codepad)
 (require 'mediawiki)
 
 ;;
@@ -66,11 +65,34 @@
 (setq erc-kill-buffer-on-part t)
 (setq erc-kill-server-buffer-on-quit t)
 
+(setq erc-auto-query 'buffer)
+
+(defun x-urgency-hint (frame arg &optional source)
+  (let* ((wm-hints (append (x-window-property 
+			    "WM_HINTS" frame "WM_HINTS" 
+			    (if source
+				source
+			      (string-to-number 
+			       (frame-parameter frame 'outer-window-id)))
+			    nil t) nil))
+	 (flags (car wm-hints)))
+    (setcar wm-hints
+	    (if arg
+		(logior flags #x00000100)
+	      (logand flags #xFFFFFEFF)))
+    (x-change-window-property "WM_HINTS" wm-hints frame "WM_HINTS" 32 t)))
+
+(defadvice erc-track-find-face (around erc-track-find-face-promote-query activate)
+  (if (erc-query-buffer-p) 
+      (x-urgency-hint (selected-frame) t)
+    ;;(setq ad-return-value (intern "erc-current-nick-face")))
+    ad-do-it))
+
 (setq erc-autojoin-channels-alist
       '(("freenode.net" "#emacs" "#archlinux" "#haskell" "#xmonad" "##c++")))
 ;; (erc :server "irc.freenode.net" :port 6667 :nick "bo0ts__")
 ;; (erc :server "localhost" :port 6667 :nick "boots")
-(setq erc-auto-query 'buffer)
+
 
 ;;
 ;; latex/auctex
@@ -90,7 +112,7 @@
                          (buffer-name)))))
 
 (add-hook 'TeX-mode-hook 'flyspell-mode)
-          
+
 
 ;;
 ;; haskell-related
@@ -100,7 +122,17 @@
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-ghci)
 
+
 ;;
+;; processing related
+;;
+
+(require 'processing-mode)
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/processing-mode")
+(autoload 'processing-mode "processing-mode" "Processing mode" t)
+(setq processing-location "/usr/share/processing/")
+(add-to-list 'auto-mode-alist '("\\.pde$" . processing-mode))
+
 ;; c++
 ;;
 

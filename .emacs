@@ -51,7 +51,6 @@
 (global-set-key "\C-c\C-k" 'kill-region)
 (global-set-key [f6] 'recompile)
 
-(require 'codepad)
 (require 'mediawiki)
 
 (require 'keyfreq)
@@ -101,10 +100,6 @@
   (erc :server "localhost" :port 6667 :nick "boots")
   )
 
-;; (erc :server "irc.freenode.net" :port 6667 :nick "bo0ts__")
-;; (erc :server "localhost" :port 6667 :nick "boots")
-
-
 ;;
 ;; latex/auctex
 ;; 
@@ -133,16 +128,6 @@
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-ghci)
 
-
-;;
-;; processing related
-;;
-
-(require 'processing-mode)
-(add-to-list 'load-path "/usr/share/emacs/site-lisp/processing-mode")
-(autoload 'processing-mode "processing-mode" "Processing mode" t)
-(setq processing-location "/usr/share/processing/")
-(add-to-list 'auto-mode-alist '("\\.pde$" . processing-mode))
 
 ;; c++
 ;;

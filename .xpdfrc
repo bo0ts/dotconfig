@@ -1,0 +1,55 @@
+#========================================================================
+#
+# Sample xpdfrc file
+#
+# The Xpdf tools look for a config file in two places:
+# 1. ~/.xpdfrc
+# 2. in a system-wide directory, typically /usr/local/etc/xpdfrc
+#
+# This sample config file demonstrates some of the more common
+# configuration options.  Everything here is commented out.  You
+# should edit things (especially the file/directory paths, since
+# they'll likely be different on your system), and uncomment whichever
+# options you want to use.  For complete details on config file syntax
+# and available options, please see the xpdfrc(5) man page.
+#
+# Also, the Xpdf language support packages each include a set of
+# options to be added to the xpdfrc file.
+#
+# http://www.foolabs.com/xpdf/
+#
+#========================================================================
+
+#----- text output control
+
+# Choose a text encoding for copy-and-paste and for pdftotext output.
+# The Latin1, ASCII7, and UTF-8 encodings are built into Xpdf.  Other
+# encodings are available in the language support packages.
+
+textEncoding		UTF-8
+
+# Choose the end-of-line convention for multi-line copy-and-past and
+# for pdftotext output.  The available options are unix, mac, and dos.
+
+textEOL		unix
+
+#----- misc settings
+
+# Enable t1lib, FreeType, and anti-aliased text.
+
+enableT1lib		yes
+enableFreeType		yes
+antialias		yes
+
+# Set the command used to run a web browser when a URL hyperlink is
+# clicked.
+
+urlCommand	"firefox %s"
+
+#----- keys
+
+bind h any scrollLeft(16)
+bind l any scrollRight(16)
+bind k any scrollUp(16)
+bind j any scrollDown(16)
+bind / any find

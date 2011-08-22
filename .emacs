@@ -1,31 +1,32 @@
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(calendar-week-start-day 1)
  '(erc-modules (quote (autojoin button completion fill irccontrols keep-place list match menu move-to-prompt netsplit networks noncommands readonly ring stamp spelling track)))
  '(erc-nickserv-identify-mode (quote nick-change))
  '(erc-play-sound nil)
  '(erc-sound-mode t)
  '(erc-try-new-nick-p nil)
- '(standard-indent 2)
- '(url-max-redirections 30)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(mediawiki-site-alist (quote (("Wikipedia" "http://en.wikipedia.org/w/" "username" "password" "Main Page") ("CGAL" "https://cgal.geometryfactory.com/CGAL/Members/w/" "Pmoeller" "" "Main Page"))))
  '(org-agenda-files (quote ("~/everything/org/notes.org")))
  '(org-archive-location "~/everything/org/archive.org::From %s")
- '(org-time-stamp-rounding-minutes (quote (0 15)))
- '(org-archive-location "~/everything/org/archive.org::From %s")
+ '(org-capture-templates (quote (("l" "Link" entry (file+headline "~/everything/org/notes.org" "Links") "* TODO %(get-page-title (current-kill 0))" :immediate-finish t) ("t" "Task" entry (file+headline "~/everything/org/notes.org" "Tasks") "* TODO %?
+  %u
+  %a" :prepend t))))
  '(org-modules (quote (org-bbdb org-bibtex org-docview org-gnus org-info org-jsinfo org-habit org-irc org-mew org-mhe org-rmail org-vm org-wl org-w3m)))
+ '(org-time-stamp-rounding-minutes (quote (0 15)))
  '(standard-indent 2)
  '(url-max-redirections 30)
  '(yas/prompt-functions (quote (yas/dropdown-prompt yas/ido-prompt yas/completing-prompt))))
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
  '(org-hide ((((background dark)) (:foreground "#2b2b2b")))))
 
 ;;
@@ -37,7 +38,6 @@
 (server-start)
 
 (require 'grep-edit)
-
 (require 'color-theme)
 (require 'color-theme-zenburn)
 (color-theme-zenburn)
@@ -53,6 +53,10 @@
 
 (require 'codepad)
 (require 'mediawiki)
+
+(require 'keyfreq)
+(keyfreq-mode 1)
+(keyfreq-autosave-mode 1)
 
 ;;
 ;; erc
@@ -90,6 +94,13 @@
 
 (setq erc-autojoin-channels-alist
       '(("freenode.net" "#emacs" "#archlinux" "#haskell" "#xmonad" "##c++")))
+
+(defun irc-start ()
+  (interactive)
+  (erc :server "irc.freenode.net" :port 6667 :nick "bo0ts__")
+  (erc :server "localhost" :port 6667 :nick "boots")
+  )
+
 ;; (erc :server "irc.freenode.net" :port 6667 :nick "bo0ts__")
 ;; (erc :server "localhost" :port 6667 :nick "boots")
 
@@ -172,29 +183,8 @@
 ;;org-mode related
 ;;
 
-(setq org-agenda-custom-commands '(("h" "Daily habits" ((agenda ""))
-                                    ((org-agenda-show-log t) (org-agenda-ndays 7)
-                                     (org-agenda-log-mode-items '(state))
-                                     (org-agenda-skip-function '(org-agenda-skip-entry-if
-                                                                 'notregexp ":DAILY:"))
-                                     ))
-                                   ("d" "Weekly CGAL report" 
-                                    ((agenda "" ((org-agenda-span 'week)
-                                                 (org-agenda-show-log t)
-                                                 (org-agenda-filter-preset '("+cgal"))
-                                                 (org-agenda-log-mode-items '(closed))))
-                                     ))
-                                   ;; others
-                                   ))
-
-(defun www-get-page-title (url)
-  (interactive "sURL: ")
-  (with-current-buffer (url-retrieve-synchronously url)
-    (goto-char 0)
-    (re-search-forward "<title>\\(.*\\)<[/]title>" nil t 1)
-    (match-string 1)))
-
 (require 'org-install)
+(require 'org-protocol)
 
 (setq org-log-done t)
 (setq org-hide-leading-stars t)
@@ -214,6 +204,42 @@
 
 (setq org-directory "~/everything/org")
 (setq org-default-notes-file (concat org-directory "/notes.org"))
+
+(setq org-agenda-custom-commands '(("h" "Daily habits" ((agenda ""))
+                                    ((org-agenda-show-log t) (org-agenda-ndays 7)
+                                     (org-agenda-log-mode-items '(state))
+                                     (org-agenda-skip-function '(org-agenda-skip-entry-if
+                                                                 'notregexp ":DAILY:"))
+                                     ))
+                                   ("d" "Weekly CGAL report" 
+                                    ((agenda "" ((org-agenda-span 'week)
+                                                 (org-agenda-show-log t)
+                                                 (org-agenda-filter-preset '("+cgal"))
+                                                 (org-agenda-log-mode-items '(closed))))
+                                     ))
+                                   ))
+(defun get-page-title (url)
+  "Get title of web page, whose url can be found in the current line"
+  ;; Get title of web page, with the help of functions in url.el
+  (interactive)
+  (with-current-buffer (url-retrieve-synchronously url)
+    ;; find title by grep the html code
+    (goto-char 0)
+    (re-search-forward "<title>\\([^<]*\\)</title>" nil t 1)
+    (setq web_title_str (match-string 1))
+    ;; find charset by grep the html code
+    (goto-char 0)
+
+    ;; find the charset, assume utf-8 otherwise
+    (if (re-search-forward "charset=\\([-0-9a-zA-Z]*\\)" nil t 1)
+        (setq coding_charset (downcase (match-string 1)))
+      (setq coding_charset "utf-8")
+    ;; decode the string of title.
+    (setq web_title_str (decode-coding-string web_title_str (intern
+                                                             coding_charset)))
+    )
+  (concat "[[" url "][" web_title_str "]]")
+  ))
 
 ;;
 ;; ispell dictionaries

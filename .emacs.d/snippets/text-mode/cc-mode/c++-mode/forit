@@ -1,5 +1,0 @@
-#name : for(iterator it = v.begin(); it != v.end(); ++it) { ... }
-# --
-for(${1:iterator} it = ${2:v}.begin(); it != $2.end(); ++it) { 
-  $3
-}

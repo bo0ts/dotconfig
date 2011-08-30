@@ -1,7 +1,7 @@
 echo
 fortune
 echo
-ddate +'Today is %{%A, the %e of %B%}, %Y. %N%nCelebrate %H'
+ddate +'%. Today is %{%A, the %e of %B%}, %Y. %N%nCelebrate %H'
 echo
 
 
@@ -64,7 +64,7 @@ alias cleantex='rm *+(.log|.aux)'
 # The 'ls' family (this assumes you use a recent GNU ls)
 #-------------------------------------------------------------
 # dircolors
-eval `dircolors -b .dircolors`
+eval `dircolors -b $HOME/.dircolors`
 
 alias ll="ls -l --group-directories-first"
 alias ls='ls -hF --color'  # add colors for filetype recognition

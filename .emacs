@@ -38,6 +38,7 @@
 (server-start)
 
 (require 'grep-edit)
+(require 'codepad)
 (require 'color-theme)
 (require 'color-theme-zenburn)
 (color-theme-zenburn)

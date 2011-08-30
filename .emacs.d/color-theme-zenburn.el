@@ -53,6 +53,7 @@
 ;; color definitions
 ;; colors with +x are lighter, colors with -x are darker
 (defvar zenburn-fg "#dcdccc")
+(defvar zenburn-fg-1 "#656555")
 (defvar zenburn-bg-1 "#2b2b2b")
 (defvar zenburn-bg "#3f3f3f")
 (defvar zenburn-bg+1 "#4f4f4f")
@@ -118,6 +119,26 @@
                                    :box (:color ,zenburn-green :line-width 2)))))
      (highlight ((t (:background ,zenburn-bg+1))))
 
+     ;;; compilation
+     (compilation-column-face ((t (:foreground ,zenburn-yellow))))
+     (compilation-enter-directory-face ((t (:foreground ,zenburn-green))))
+     (compilation-error-face ((t (:inherit zenburn-error-face))))
+     (compilation-face ((t (:foreground ,zenburn-fg))))
+     (compilation-info-face ((t (:foreground ,zenburn-blue))))
+     (compilation-info ((t (:foreground ,zenburn-green+4 :underline t))))
+     (compilation-leave-directory-face ((t (:foreground ,zenburn-green))))
+     (compilation-line-face ((t (:foreground ,zenburn-yellow))))
+     (compilation-line-number ((t (:foreground ,zenburn-yellow))))
+     (compilation-message-face ((t (:foreground ,zenburn-blue))))
+     (compilation-warning-face ((t (:inherit zenburn-warning-face))))
+
+     ;;; grep
+     (grep-context-face ((t (:foreground ,zenburn-fg))))
+     (grep-error-face ((t (:inherit zenburn-error-face))))
+     (grep-hit-face ((t (:foreground ,zenburn-blue))))
+     (grep-match-face ((t (:inherit zenburn-strong-2-face))))
+     (match ((t (:background ,zenburn-bg-1 :foreground ,zenburn-orange :weight bold))))
+
      ;; faces used by isearch
      (isearch ((t (:foreground ,zenburn-yellow :background ,zenburn-bg-1))))
      (isearch-fail ((t (:foreground ,zenburn-fg :background ,zenburn-red-4))))
@@ -139,7 +160,7 @@
      (font-lock-builtin-face ((t (:foreground ,zenburn-blue))))
      (font-lock-comment-face ((t (:foreground ,zenburn-green))))
      (font-lock-comment-delimiter-face ((t (:foreground ,zenburn-green))))
-     (font-lock-constant-face ((t (:foreground ,zenburn-fg))))
+     (font-lock-constant-face ((t (:foreground ,zenburn-green+4))))
      (font-lock-doc-face ((t (:foreground ,zenburn-green+1))))
      (font-lock-doc-string-face ((t (:foreground ,zenburn-blue+1))))
      (font-lock-function-name-face ((t (:foreground ,zenburn-blue))))
@@ -147,8 +168,8 @@
      (font-lock-negation-char-face ((t (:foreground ,zenburn-fg))))
      (font-lock-preprocessor-face ((t (:foreground ,zenburn-blue))))
      (font-lock-string-face ((t (:foreground ,zenburn-red))))
-     (font-lock-type-face ((t (:foreground ,zenburn-yellow))))
-     (font-lock-variable-name-face ((t (:foreground ,zenburn-yellow))))
+     (font-lock-type-face ((t (:foreground ,zenburn-blue))))
+     (font-lock-variable-name-face ((t (:foreground ,zenburn-orange))))
      (font-lock-warning-face ((t (:inherit zenburn-warning-face))))
 
      ;;; external
@@ -195,6 +216,7 @@
      (erc-input-face ((t (:foreground ,zenburn-yellow))))
      (erc-keyword-face ((t (:inherit zenburn-strong-1-face))))
      (erc-nick-default-face ((t (:weigth bold))))
+     (erc-my-nick-face ((t (:foreground ,zenburn-red :weigth bold))))
      (erc-nick-msg-face ((t (:inherit erc-default))))
      (erc-notice-face ((t (:foreground ,zenburn-green))))
      (erc-pal-face ((t (:foreground ,zenburn-orange :weight bold))))
@@ -271,6 +293,9 @@
      (ido-first-match ((t (:inherit zenburn-strong-1-face))))
      (ido-only-match ((t (:inherit zenburn-strong-2-face))))
      (ido-subdir ((t (:foreground ,zenburn-yellow))))
+
+     ;; linum-mode
+     (linum ((t (:foreground ,zenburn-fg-1 :background ,zenburn-bg-1))))
 
      ;; magit
      (magit-section-title ((t (:inherit zenburn-strong-1-face))))

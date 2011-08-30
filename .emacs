@@ -58,6 +58,9 @@
 (keyfreq-mode 1)
 (keyfreq-autosave-mode 1)
 
+(autoload 'word-count-mode "word-count"
+  "Minor mode to count words." t nil)
+
 ;;
 ;; erc
 ;;

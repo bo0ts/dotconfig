@@ -1,0 +1,17 @@
+Those are the .config files that make up my complete desktop
+configuration. Minimalism is key here, so you wont find a lot of fancy
+stuff here.
+
+The .bashrc is mostly scavenged from all over the place and doesn't
+get much love.
+
+The .xmonad is pretty lean and comes with a scratchpad, and keybinds
+for mpc.
+
+The whole color theme of the desktop is zenburn, maybe I'll add a
+solaris config and some way to switch it on "system wide".
+
+As the .emacs.d was getting increasingly large and interdependent it
+has been factored out into a single independent repository composed of
+several git-submodules and my own code.
+

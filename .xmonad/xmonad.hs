@@ -40,7 +40,7 @@ scratchHook = scratchpadManageHook (RationalRect l t w h)
 tabbedLayout = simpleTabbedAlways ||| Full
 
 main = do
-    xmproc <- spawnPipe "xmobar /home/boots/.xmobarrc"
+    xmproc <- spawnPipe "xmobar ~/.xmobarrc"
     xmonad $ withUrgencyHook NoUrgencyHook defaultConfig
         {
 	  terminal    = "urxvt"

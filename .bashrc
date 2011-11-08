@@ -40,11 +40,9 @@ source ~/.svn_completion
 
 export BROWSER=firefox
 export EDITOR='emacsclient -t'
-export PATH=$PATH:/usr/local/bin
+export PATH="/usr/lib/ccache/bin/:$PATH"
 
 CDPATH=.:
-export FANTOMDATADIR=/home/boots/fantom/trunk/testData/
-export FANTOMBASEDIR=/home/boots/fantom/trunk/
 
 #
 # Alias Zone
@@ -121,7 +119,7 @@ function extract()      # Handy Extract Program.
 # cgal tools
 #-------------------------------------------------------------
 source ~/use_man_tools
-export CGAL_DIR=$HOME/prog/cgal/next/build/
+export CGAL_DIR=$HOME/prog/cgal/next/build
 
 #-------------------------------------------------------------
 # tailoring 'less'

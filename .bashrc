@@ -41,6 +41,7 @@ source ~/.svn_completion
 export BROWSER=firefox
 export EDITOR='emacsclient -t'
 export PATH="/usr/lib/ccache/bin/:$PATH"
+export OSG_FILE_PATH=/home/pmoeller/data/osg
 
 CDPATH=.:
 

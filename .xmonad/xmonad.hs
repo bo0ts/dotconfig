@@ -10,6 +10,8 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.UrgencyHook
 import XMonad.Layout.NoBorders
+import XMonad.Layout.Tabbed
+import XMonad.Layout.PerWorkspace
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Util.Scratchpad
@@ -23,12 +25,12 @@ import XMonad.Layout.Tabbed
 myManageHook = composeAll
                [ className =? "Firefox" --> doShift "1"
                , className =? "Emacs" --> doShift "2"
+               , className =? "Xpdf" --> doShift "4"
                ] 
                <+> 
                composeOne [ isFullscreen -?> doFullFloat ]
                <+>
                scratchHook
--- scratchpadManageHookDefault
 
 scratchHook = scratchpadManageHook (RationalRect l t w h)
   where
@@ -37,7 +39,7 @@ scratchHook = scratchpadManageHook (RationalRect l t w h)
     t = 0.67   -- distance from top edge, 90%
     l = 1 - w   -- distance from left edge, 0%
 
-tabbedLayout = simpleTabbedAlways ||| Full
+myLayoutHook = smartBorders $ avoidStruts $ (layoutHook defaultConfig)
 
 main = do
     xmproc <- spawnPipe "xmobar ~/.xmobarrc"
@@ -46,7 +48,8 @@ main = do
 	  terminal    = "urxvt"
 	, manageHook = manageDocks <+> myManageHook <+> manageHook defaultConfig -- managedocks für gap
         , startupHook = setWMName "LG3D"
- 	, layoutHook = smartBorders $ avoidStruts $ layoutHook defaultConfig
+ 	, layoutHook = onWorkspace "4" (smartBorders $ simpleTabbedAlways)
+                       $ myLayoutHook
         , logHook = dynamicLogWithPP $ xmobarPP
                         { ppOutput = hPutStrLn xmproc
                         , ppTitle = xmobarColor "#dfaf8f" "" . shorten 50
@@ -55,7 +58,7 @@ main = do
         , modMask = mod4Mask
         } `additionalKeys`
         [ 
-          ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock") -- meta shift z 
+          ((mod4Mask .|. shiftMask, xK_z), spawn "slimlock") -- meta shift z 
         , ((controlMask, xK_Print), spawn "sleep 0.2; scrot -s") -- print --> screenshot
         , ((0, 0x1008ff15), spawn "mpc stop")
         , ((0, 0x1008ff16), spawn "mpc prev")
@@ -67,6 +70,8 @@ main = do
         , ((mod4Mask .|. shiftMask, xK_n), scratchpadSpawnActionTerminal "urxvt")
         , ((mod4Mask, xK_o), promptSearch greenXPConfig google)
         , ((mod4Mask .|. shiftMask, xK_b), focusUrgent)
+        , ((mod4Mask, xK_s), spawn "xinput set-int-prop 13 \"Device Enabled\" 8 0")
+        , ((mod4Mask .|. shiftMask, xK_s), spawn "xinput set-int-prop 13 \"Device Enabled\" 8 1")
         , ((mod4Mask, xK_p), spawn "dmenu_run")
         ]
 

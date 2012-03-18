@@ -7,11 +7,12 @@ Config { font = "-misc-fixed-*-*-*-*-9-*-*-*-*-*-*-*"
                     , Run Cpu ["-L","3","-H","50","--low", "lightblue","--normal","green","--high","red"] 10
                     , Run Memory ["-t","Mem: <usedratio>%"] 10
                     , Run Swap [] 10
+                    , Run BatteryP ["BAT0"] ["-t", "Bat: <left>%", "energy_full"] 300
                     , Run Date "%a %b %_d %k:%M" "date" 10
                     , Run StdinReader
-                    , Run Com "sh" ["~/.xmonad/mpd.sh"] "mpd" 10
+                    , Run MPD ["-t", "<state>: <artist> - <title>"] 10
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% | %mpd% }{ %cpu% | %memory% | %swap% | %date% | %LFMN%"
+       , template = "%StdinReader% | %mpd% }{ %cpu% | %memory% | %swap% | %battery% | %date% | %LFMN%"
        }

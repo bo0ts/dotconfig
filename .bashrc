@@ -91,7 +91,6 @@ alias g="grep"
 
 
 function ff () { find . -type f -iname '*'"$@"'*' ; }
-function firefox() { command firefox "$@" & }
 function xpdf() { command xpdf "$@" & }
 function xchm() { command xchm "$@" & }
 function extract()      # Handy Extract Program.

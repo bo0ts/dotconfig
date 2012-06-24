@@ -9,7 +9,7 @@ xrdb -merge $HOME/.Xdefaults
 xsetroot -cursor_name left_ptr
 xsetroot -solid '#80a0af'
 
-case uname -n in
+case $(uname -n) in
     "determinist")
         xsetbg $HOME/pics/wallpapers/laughing-man-stone.png 
         ;;

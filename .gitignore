@@ -1,3 +1,7 @@
 xmonad/xmonad-x86_64-linux
 subversion/README.txt
 subversion/servers
+xmonad/xmonad.errors
+xmonad/xmonad.hi
+xmonad/xmonad.o
+

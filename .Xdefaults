@@ -6,9 +6,8 @@ URxvt*background:	#3f3f3f
 URxvt*foreground:	#dcdccc
 URxvt*font:		xft:Inconsolata:size=10:antialise=true
 URxvt*boldFont:		xft:Inconsolata:size=10:antialise=true
+URxvt*termName:		rxvt-256color
 
 Emacs.font: Inconsolata:size=16:antialise:true
 Emacs.fontBackend: xft
-Emacs.menuBar: off
-Emacs.toolBar: -1
-Emacs.verticalScrollBars: off
+

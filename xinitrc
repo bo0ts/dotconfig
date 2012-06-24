@@ -9,6 +9,15 @@ xrdb -merge $HOME/.Xdefaults
 xsetroot -cursor_name left_ptr
 xsetroot -solid '#80a0af'
 
+case uname -n in
+    "determinist")
+        xsetbg $HOME/pics/wallpapers/laughing-man-stone.png 
+        ;;
+    "matisse")
+        xsetbg $HOME/pics/wallpapers/laughing-man-stone.png 
+        ;;
+esac
+
 xsetbg $HOME/pics/wallpapers/laughing-man-stone.png
 
 trayer --edge top --align right --SetDockType true --SetPartialStrut true \
@@ -30,7 +39,6 @@ xset r rate 150
 
 xmodmap $HOME/.Xmodmap
 
-syndaemon -i 1 -d
 emacs &
 urxvt -e ncmpcpp &
 

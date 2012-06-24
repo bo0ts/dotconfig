@@ -1,3 +1,5 @@
 set passkeys+='mail\.google\.com':c\/jkhnpouelxsfra#`[]z?\*nrtgidIU+-=<Tab><Return>
 set passkeys+='www\.google\.com\/reader\/':c\/jkhnpouelxsfvra#`[]z?\*nrtgidIU+-=<Tab><Return>
 set editor="emacsclient -c"
+command -nargs=1 boosto -description="Open a Boost library" :open http://www.boost.org/libs/<args[1]>
+command -nargs=1 boost -description="TabOpen a Boost library" :tabopen http://www.boost.org/libs/<args[1]>

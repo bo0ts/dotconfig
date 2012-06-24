@@ -23,14 +23,16 @@ import Data.Monoid
 import XMonad.Layout.Tabbed
 
 myManageHook = composeAll
-               [ className =? "Firefox" --> doShift "1"
-               , className =? "Emacs" --> doShift "2"
-               , className =? "Xpdf" --> doShift "4"
+               [ className =? "Firefox" --> doShift "1:www"
+               , className =? "Emacs" --> doShift "2:emacs"
+               , className =? "Xpdf" --> doShift "4:pdf"
                ] 
                <+> 
                composeOne [ isFullscreen -?> doFullFloat ]
                <+>
                scratchHook
+
+myWorkspaces = ["1:www", "2:emacs", "3:sh", "4:pdf", "5", "6", "7", "8:gnus", "9:mpd"]
 
 scratchHook = scratchpadManageHook (RationalRect l t w h)
   where
@@ -45,17 +47,18 @@ main = do
     xmproc <- spawnPipe "xmobar ~/.xmobarrc"
     xmonad $ withUrgencyHook NoUrgencyHook defaultConfig
         {
-	  terminal    = "urxvt"
-	, manageHook = manageDocks <+> myManageHook <+> manageHook defaultConfig -- managedocks für gap
-        , startupHook = setWMName "LG3D"
- 	, layoutHook = onWorkspace "4" (smartBorders $ simpleTabbedAlways)
-                       $ myLayoutHook
-        , logHook = dynamicLogWithPP $ xmobarPP
-                        { ppOutput = hPutStrLn xmproc
-                        , ppTitle = xmobarColor "#dfaf8f" "" . shorten 50
-                        , ppUrgent =xmobarColor "#ac7373" "black" . xmobarStrip
-                        }
-        , modMask = mod4Mask
+	  terminal                 = "urxvt"
+        , XMonad.workspaces        = myWorkspaces
+	, manageHook               = manageDocks <+> myManageHook <+> manageHook defaultConfig -- managedocks für gap
+        , startupHook              = setWMName "LG3D"
+ 	, layoutHook               = onWorkspace "4:pdf" (smartBorders $ simpleTabbedAlways)
+                                     $ myLayoutHook
+        , logHook                  = dynamicLogWithPP $ xmobarPP
+                                     { ppOutput = hPutStrLn xmproc
+                                     , ppTitle  = xmobarColor "#dfaf8f" "" . shorten 50
+                                     , ppUrgent =xmobarColor "#ac7373" "black" . xmobarStrip
+                                     }
+        , modMask                  = mod4Mask
         } `additionalKeys`
         [ 
           ((mod4Mask .|. shiftMask, xK_z), spawn "slimlock") -- meta shift z 

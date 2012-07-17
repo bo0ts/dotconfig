@@ -10,15 +10,13 @@ xsetroot -cursor_name left_ptr
 xsetroot -solid '#80a0af'
 
 case $(uname -n) in
-    "determinist")
-        xsetbg $HOME/pics/wallpapers/laughing-man-stone.png 
+    determinist)
+        xsetbg $HOME/pics/wallpapers/xeno-buddha-red.jpg 
         ;;
-    "matisse")
+    matisse)
         xsetbg $HOME/pics/wallpapers/laughing-man-stone.png 
         ;;
 esac
-
-xsetbg $HOME/pics/wallpapers/laughing-man-stone.png
 
 trayer --edge top --align right --SetDockType true --SetPartialStrut true \
     --expand true --transparent true --alpha 0 --tint 0x3f3f3f --width 10 --height 13 &

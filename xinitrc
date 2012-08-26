@@ -27,9 +27,11 @@ id2=$HOME/.ssh/id_dsa
 id3=$HOME/.ssh/id_rsa
 if [ -x /usr/bin/ssh-agent ] && [ -f $id1 -o -f $id2 -o -f $id3 ];
 then
-	eval `ssh-agent -s`
+	eval $(ssh-agent -s)
 	ssh-add < /dev/null
 fi
+
+eval $(gpg-agent --daemon)
 
 xset fp+ /usr/share/fonts/TTF/
 xset b 100 0 0

@@ -30,7 +30,7 @@ export PS1='\[\e[0;36m\]\u\[\e[m\]\[\e[1;37m\]@\[\e[m\]\[\e[0;36m\]\h\[\e[m\] \[
 # Completion
 #
 
-source ~/.git-bash-completion.sh
+source /usr/share/git/completion/git-completion.bash
 source ~/.svn_completion
 
 #
@@ -117,8 +117,31 @@ function extract()      # Handy Extract Program.
 #-------------------------------------------------------------
 # cgal tools
 #-------------------------------------------------------------
+export PATH=:$PATH:$HOME/prog/cgal/Scripts/developer_scripts:$HOME/prog/cgal/Scripts/scripts:$HOME/prog/cgal/Manual/developer_scripts:$HOME/prog/cgal/Manual_tools/src:$HOME/prog/cgal/Manual_tools/scripts:$HOME/local/bin/
 source ~/use_man_tools
-export CGAL_DIR=$HOME/prog/cgal/next/build
+export CGAL_DIR=$HOME/prog/cgal/build
+
+
+#-------------------------------------------------------------
+# efi's build system
+#-------------------------------------------------------------
+export ROOT=$HOME/roots/linux
+export PLATFORM=linux
+export PATH="$PATH:$HOME/roots/linux/bin"
+export USE_CGAL=1
+export USE_AOS=1
+export USE_NEF=1
+
+export USE_AOS=1
+# export USE_VOS=1
+export USE_SGM=1
+# export USE_QUADRIC=1
+# export USE_CGM=1
+# export USE_NEF=1
+export USE_NGM=1
+# export USE_LTS=1
+# export LTS_WORKDIR=1
+
 
 #-------------------------------------------------------------
 # tailoring 'less'

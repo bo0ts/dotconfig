@@ -11,6 +11,8 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.UrgencyHook
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Tabbed
+import XMonad.Layout.Grid
+import XMonad.Layout.IM
 import XMonad.Layout.PerWorkspace
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
@@ -41,7 +43,19 @@ scratchHook = scratchpadManageHook (RationalRect l t w h)
     t = 0.67   -- distance from top edge, 90%
     l = 1 - w   -- distance from left edge, 0%
 
-myLayoutHook = smartBorders $ avoidStruts $ (layoutHook defaultConfig)
+myLayout = (onWorkspace "4:pdf" (smartBorders $ simpleTabbedAlways))
+           $ (onWorkspace "3:sh" (avoidStruts $ Grid))
+           $ (onWorkspace "8:gnus" (avoidStruts $ imLayout))
+           $ smartBorders
+           $ avoidStruts 
+           $ standardLayouts
+    where
+      standardLayouts = (layoutHook defaultConfig)
+      nmaster = 1
+      delta   = 3/100
+      ratio   = 1/2
+      imLayout = withIM (1/10) (ClassName "Skype") (Tall nmaster delta ratio)
+               
 
 main = do
     xmproc <- spawnPipe "xmobar ~/.xmobarrc"
@@ -51,8 +65,7 @@ main = do
         , XMonad.workspaces        = myWorkspaces
 	, manageHook               = manageDocks <+> myManageHook <+> manageHook defaultConfig -- managedocks für gap
         , startupHook              = setWMName "LG3D"
- 	, layoutHook               = onWorkspace "4:pdf" (smartBorders $ simpleTabbedAlways)
-                                     $ myLayoutHook
+ 	, layoutHook               = myLayout
         , logHook                  = dynamicLogWithPP $ xmobarPP
                                      { ppOutput = hPutStrLn xmproc
                                      , ppTitle  = xmobarColor "#dfaf8f" "" . shorten 50

@@ -11,7 +11,7 @@ xsetroot -solid '#80a0af'
 
 case $(uname -n) in
     determinist)
-        xsetbg $HOME/pics/wallpapers/xeno-buddha-red.jpg 
+        xsetbg $HOME/pics/wallpapers/didntwrite.jpg
         ;;
     matisse)
         xsetbg $HOME/pics/wallpapers/laughing-man-stone.png 

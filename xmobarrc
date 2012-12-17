@@ -10,9 +10,8 @@ Config { font = "-misc-fixed-*-*-*-*-9-*-*-*-*-*-*-*"
                     , Run BatteryP ["BAT0"] ["-t", "Bat: <left>%", "energy_full"] 300
                     , Run Date "%a %b %_d %k:%M" "date" 10
                     , Run StdinReader
-                    , Run MPD ["-t", "<state>: <artist> - <title>"] 10
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% | %mpd% }{ %cpu% | %memory% | %swap% | %battery% | %date% | %LFMN%"
+       , template = "%StdinReader% }{ %cpu% | %memory% | %swap% | %battery% | %date% | %LFMN%"
        }

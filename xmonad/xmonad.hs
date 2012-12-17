@@ -44,7 +44,7 @@ scratchHook = scratchpadManageHook (RationalRect l t w h)
     l = 1 - w   -- distance from left edge, 0%
 
 myLayout = (onWorkspace "4:pdf" (smartBorders $ simpleTabbedAlways))
-           $ (onWorkspace "3:sh" (avoidStruts $ Grid))
+           $ (onWorkspace "3:sh" (avoidStruts $ smartBorders $ Grid))
            $ (onWorkspace "8:gnus" (avoidStruts $ imLayout))
            $ smartBorders
            $ avoidStruts 

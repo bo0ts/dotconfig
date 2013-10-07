@@ -6,6 +6,12 @@ keycode 233 = Page_Down
 keycode 234 = Page_Up
 keycode 108 = Multi_key
 
+keycode 108 = Mode_switch
+keycode 38 = a A adiaeresis Adiaeresis
+keycode 30 = u U udiaeresis Udiaeresis
+keycode 32 = o O odiaeresis Odiaeresis
+keycode 39 = s S ssharp
+
 remove Lock = Caps_Lock
 remove Control = Control_L
 keysym Control_L = Caps_Lock

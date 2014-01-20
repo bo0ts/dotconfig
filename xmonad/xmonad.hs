@@ -8,7 +8,6 @@ import XMonad.Actions.Search
 import XMonad.Prompt
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
-import XMonad.Hooks.UrgencyHook
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Tabbed
 import XMonad.Layout.Grid
@@ -21,8 +20,9 @@ import System.IO
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.ManageHelpers
 import Data.Monoid
-
+import XMonad.Hooks.EwmhDesktops
 import XMonad.Layout.Tabbed
+
 
 myManageHook = composeAll
                [ className =? "Firefox" --> doShift "1:www"
@@ -56,10 +56,10 @@ myLayout = (onWorkspace "4:pdf" (smartBorders $ simpleTabbedAlways))
       ratio   = 1/2
       imLayout = withIM (1/10) (ClassName "Skype") (Tall nmaster delta ratio)
                
-
+-- main = xmonad $ ewmh defaultConfig{  }
 main = do
     xmproc <- spawnPipe "xmobar ~/.xmobarrc"
-    xmonad $ withUrgencyHook NoUrgencyHook defaultConfig
+    xmonad $ ewmh defaultConfig
         {
 	  terminal                 = "urxvt"
         , XMonad.workspaces        = myWorkspaces
@@ -72,6 +72,7 @@ main = do
                                      , ppUrgent =xmobarColor "#ac7373" "black" . xmobarStrip
                                      }
         , modMask                  = mod4Mask
+        , handleEventHook          = handleEventHook defaultConfig <+> fullscreenEventHook
         } `additionalKeys`
         [ 
           ((mod4Mask .|. shiftMask, xK_z), spawn "slimlock") -- meta shift z 
@@ -85,7 +86,6 @@ main = do
         , ((0, 0x1008ff14), spawn "mpc toggle")
         , ((mod4Mask .|. shiftMask, xK_n), scratchpadSpawnActionTerminal "urxvt")
         , ((mod4Mask, xK_o), promptSearch greenXPConfig google)
-        , ((mod4Mask .|. shiftMask, xK_b), focusUrgent)
         , ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
         , ((mod4Mask, xK_s), spawn "xinput set-int-prop 13 \"Device Enabled\" 8 0")
         , ((mod4Mask .|. shiftMask, xK_s), spawn "xinput set-int-prop 13 \"Device Enabled\" 8 1")

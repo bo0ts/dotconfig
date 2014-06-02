@@ -117,18 +117,8 @@ function extract()      # Handy Extract Program.
 #-------------------------------------------------------------
 # cgal tools
 #-------------------------------------------------------------
-export PATH=:$PATH:$HOME/prog/cgal/Scripts/developer_scripts:$HOME/prog/cgal/Scripts/scripts:$HOME/prog/cgal/Manual/developer_scripts:$HOME/prog/cgal/Manual_tools/src:$HOME/prog/cgal/Manual_tools/scripts:$HOME/local/bin/
-
-export TEXINPUTS=.:$HOME/prog/cgal/next/Manual_tools/sty:$TEXINPUTS
-export BIBINPUTS=$HOME/prog/cgal/next/Manual/doc_tex/:.:$BIBINPUTS
-
-export LATEX_CONV_CONFIG=$HOME/prog/cgal/next/Manual_tools/src/latex_converter_config
-export LATEX_CONV_HEADER=$HOME/prog/cgal/CGAL-I
-export LATEX_CONV_INPUTS=$HOME/prog/cgal/CGAL-I/doc_tex
-export TEXINPUTS=$LATEX_CONV_INPUTS:$TEXINPUTS
-
+export PATH=:$PATH:$HOME/prog/cgal/Scripts/developer_scripts:$HOME/prog/cgal/Scripts/scripts
 export CGAL_DIR=$HOME/prog/cgal/build
-
 
 #-------------------------------------------------------------
 # efi's build system

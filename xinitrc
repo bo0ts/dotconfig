@@ -29,7 +29,7 @@ xset r rate 150
 
 xmodmap $HOME/.Xmodmap
 
-emacs &
+emacs --daemon &
 urxvt -e ncmpcpp &
 
 exec xmonad

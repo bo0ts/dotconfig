@@ -26,7 +26,6 @@ import XMonad.Layout.Tabbed
 
 myManageHook = composeAll
                [ className =? "Firefox" --> doShift "1:www"
-               , className =? "Emacs" --> doShift "2:emacs"
                , className =? "Xpdf" --> doShift "4:pdf"
                ] 
                <+> 
@@ -91,4 +90,3 @@ main = do
         , ((mod4Mask .|. shiftMask, xK_s), spawn "xinput set-int-prop 13 \"Device Enabled\" 8 1")
         , ((mod4Mask, xK_p), spawn "dmenu_run")
         ]
-

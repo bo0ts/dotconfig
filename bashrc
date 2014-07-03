@@ -15,8 +15,8 @@ shopt -s checkwinsize
 shopt -s checkhash
 shopt -s histappend histreedit histverify
 shopt -s no_empty_cmd_completion
-export HISTSIZE=1000
-export HISTFILESIZE=1000
+export HISTSIZE=10000
+export HISTFILESIZE=10000
 export HISTCONTROL=ignoredups
 umask 022
 

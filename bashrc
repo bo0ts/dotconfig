@@ -121,27 +121,6 @@ export PATH=:$PATH:$HOME/prog/cgal/Scripts/developer_scripts:$HOME/prog/cgal/Scr
 export CGAL_DIR=$HOME/prog/cgal/build
 
 #-------------------------------------------------------------
-# efi's build system
-#-------------------------------------------------------------
-export ROOT=$HOME/roots/linux
-export PLATFORM=linux
-export PATH="$PATH:$HOME/roots/linux/bin"
-export USE_CGAL=1
-export USE_AOS=1
-export USE_NEF=1
-
-export USE_AOS=1
-# export USE_VOS=1
-export USE_SGM=1
-# export USE_QUADRIC=1
-# export USE_CGM=1
-# export USE_NEF=1
-export USE_NGM=1
-# export USE_LTS=1
-# export LTS_WORKDIR=1
-
-
-#-------------------------------------------------------------
 # tailoring 'less'
 #-------------------------------------------------------------
 

@@ -82,7 +82,7 @@ alias copy='cp'
 
 alias mkdir='mkdir -p'
 alias grep='grep --colour'
-alias g="grep"
+alias rm='echo "This is not the command you are looking for."; false'
 
 #
 # Random

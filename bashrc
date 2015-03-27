@@ -39,8 +39,7 @@ source ~/.svn_completion
 
 export BROWSER=firefox
 export EDITOR='emacsclient -t'
-export PATH="/usr/lib/ccache/bin/:$PATH"
-export OSG_FILE_PATH=/home/pmoeller/data/osg
+export PATH="$(ruby -rubygems -e "puts Gem.user_dir")/bin:/usr/lib/ccache/bin/:$PATH"
 
 CDPATH=.:
 
@@ -117,8 +116,8 @@ function extract()      # Handy Extract Program.
 #-------------------------------------------------------------
 # cgal tools
 #-------------------------------------------------------------
-export PATH=:$PATH:$HOME/prog/cgal/Scripts/developer_scripts:$HOME/prog/cgal/Scripts/scripts
-export CGAL_DIR=$HOME/prog/cgal/build
+export PATH="$PATH:$HOME/prog/cgal/Scripts/developer_scripts:$HOME/prog/cgal/Scripts/scripts"
+export CGAL_DIR="$HOME/prog/cgal/build"
 
 #-------------------------------------------------------------
 # tailoring 'less'

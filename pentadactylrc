@@ -1,7 +1,6 @@
 loadplugins '\.(js|penta)$'
 group user
 set passkeys+='mail\.google\.com':c\/jkhnpouelxsfra#`[]z?\*nrtgidIU+-=<Tab><Return>
-set passkeys+='www\.google\.com\/reader\/':c\/jkhnpouelxsfvra#`[]z?\*nrtgidIU+-=<Tab><Return>
 set editor="emacsclient -c"
 map -modes=n,v gI -ex :open ip
 command -nargs=1 boosto -description="Open a Boost library" :open http://www.boost.org/libs/<args[1]>

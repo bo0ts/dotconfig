@@ -85,7 +85,7 @@ main = do
         , ((mod4Mask .|. shiftMask, xK_n), scratchpadSpawnActionTerminal "urxvt")
         , ((mod4Mask, xK_o), promptSearch greenXPConfig google)
         , ((mod4Mask .|. shiftMask, xK_b), focusUrgent)
-        , ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
+        , ((mod4Mask .|. shiftMask, xK_z), spawn "slock")
         , ((mod4Mask, xK_s), spawn "xinput set-int-prop 13 \"Device Enabled\" 8 0")
         , ((mod4Mask .|. shiftMask, xK_s), spawn "xinput set-int-prop 13 \"Device Enabled\" 8 1")
         , ((mod4Mask, xK_p), spawn "dmenu_run")

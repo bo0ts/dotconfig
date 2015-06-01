@@ -3,7 +3,6 @@
 
 # .xinitrc
 
-xscreensaver -no-splash &
 xrdb -merge $HOME/.Xdefaults
 
 xsetroot -cursor_name left_ptr

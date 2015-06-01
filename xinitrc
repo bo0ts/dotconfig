@@ -10,10 +10,10 @@ xsetroot -solid '#80a0af'
 
 case $(uname -n) in
     determinist)
-        xsetbg $HOME/pics/wallpapers/didntwrite.jpg
+        feh --bg-scale $HOME/pics/wallpapers/didntwrite.jpg
         ;;
     matisse)
-        xsetbg $HOME/pics/wallpapers/laughing-man-stone.png 
+        feh --bg-scale $HOME/pics/wallpapers/laughing-man-stone.png 
         ;;
 esac
 

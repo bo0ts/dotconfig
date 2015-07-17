@@ -1,4 +1,4 @@
-Config { font = "-misc-fixed-*-*-*-*-9-*-*-*-*-*-*-*"
+Config { font = "xft:Inconsolata:pixelsize=10:antialise=true"
        , bgColor = "#3f3f3f"
        , fgColor = "#dcdccc"
        , position = TopW L 90
